@@ -1,4 +1,5 @@
 # Surrogate-assisted Evolutionary Reinforcement Learning
+Code for the Information Sciences paper [A surrogate-assisted controller for expensive evolutionary reinforcement learning](https://www.sciencedirect.com/science/article/abs/pii/S0020025522012658).
 
 **Abstract**
 
