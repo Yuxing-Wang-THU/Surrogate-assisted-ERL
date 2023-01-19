@@ -240,7 +240,7 @@ class Agent:
             worst_index = all_fitness.index(min(all_fitness))
             champ_index = all_fitness.index(max(all_fitness))
             # NeuroEvolution's probabilistic selection and recombination step
-            elite_index,_,_ = self.evolver.epoch(self.pop, all_fitness, butt=butt,)
+            elite_index,_,_ = self.evolver.epoch(self.pop, all_fitness, button=button)
             # Elite protection
             self.exchange_para(self.best_actor, self.pop[worst_index])
 
