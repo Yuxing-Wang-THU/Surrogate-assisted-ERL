@@ -1,7 +1,7 @@
 # Surrogate-assisted Evolutionary Reinforcement Learning
 Code for the Information Sciences paper [A surrogate-assisted controller for expensive evolutionary reinforcement learning](https://www.sciencedirect.com/science/article/abs/pii/S0020025522012658).
 
-<img src="https://github.com/Yuxing-Wang-THU/Surrogate-assisted-ERL/blob/main/serl.png" div align=right width = "37%" />
+<img src="serl.png" div align=right width = "37%" />
 
 ## Abstract
 
