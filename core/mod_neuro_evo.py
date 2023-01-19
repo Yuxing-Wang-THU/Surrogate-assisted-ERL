@@ -120,7 +120,7 @@ class SSNE:
         for param in (gene.parameters()):
             param.data.copy_(param.data)
 
-    def epoch(self, pop, fitness_evals, butt):
+    def epoch(self, pop, fitness_evals, butt=None):
 
         # Entire epoch is handled with indices; Index rank nets by fitness evaluation (0 is the best after reversing)
         index_rank = self.list_argsort(fitness_evals); index_rank.reverse()
