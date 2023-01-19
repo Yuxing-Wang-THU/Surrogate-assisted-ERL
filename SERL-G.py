@@ -197,10 +197,10 @@ class Agent:
         ####################### EVOLUTION #####################
         all_fitness = []
         # Evaluate genomes/individuals
-        butt = self.select()
+        button = self.select()
         if len(self.replay_buffer) <=1000:
-            butt = "real"
-        if butt == "real":
+            button = "real"
+        if button == "real":
             print("######## Real Fitness Evalution ###########")
             for net in self.pop:
                 fitness = 0.0
@@ -220,9 +220,9 @@ class Agent:
             for eval in range(5): test_score += self.evaluate(self.best_actor, is_render=False, is_action_noise=False, store_transition=False)/5.0
             
             # NeuroEvolution's probabilistic selection and recombination step
-            elite_index, all_elites, unselects = self.evolver.epoch(self.pop, all_fitness, butt=butt)
+            elite_index, all_elites, unselects = self.evolver.epoch(self.pop, all_fitness, button=button)
         
-        elif butt == 'surro':
+        elif button == 'surro':
             print("######## Surrogate-assisted Evaluation ###########")
             # Prepare critic-based surrogate model
             self.surro_critic = deepcopy(self.rl_agent.critic)
@@ -260,9 +260,9 @@ class Agent:
                 batch = replay_memory.Transition(*zip(*transitions))
                 self.rl_agent.update_parameters(batch)
 
-            # Synch RL Agent to NE and butt == "real"
+            # Synch RL Agent to NE and button == "real"
             # Elite protection
-            if self.num_games % self.args.synch_period == 0 and butt == "real":
+            if self.num_games % self.args.synch_period == 0 and button == "real":
                 if worst_index not in all_elites:
                     self.rl_to_evo(self.rl_agent.actor, self.pop[worst_index])
                     self.evolver.rl_policy = worst_index
