@@ -120,7 +120,7 @@ class SSNE:
         for param in (gene.parameters()):
             param.data.copy_(param.data)
 
-    def epoch(self, pop, fitness_evals, butt=None):
+    def epoch(self, pop, fitness_evals, button=None):
 
         # Entire epoch is handled with indices; Index rank nets by fitness evaluation (0 is the best after reversing)
         index_rank = self.list_argsort(fitness_evals); index_rank.reverse()
@@ -138,7 +138,7 @@ class SSNE:
         random.shuffle(unselects)
 
         # COMPUTE RL_SELECTION RATE
-        if butt == "real":
+        if button == "real":
             if self.rl_policy != None: #RL Transfer happened
                 self.selection_stats['total'] += 1.0
                 if self.rl_policy in elitist_index: self.selection_stats['elite'] += 1.0
@@ -153,7 +153,7 @@ class SSNE:
                 # rl_logger.writerow(info_dict)
                 # rl_log.flush() 
 
-        if butt == "surro":
+        if button == "surro":
             if self.best_real_policy != None: #RL Transfer happened
                 self.surro_selection_stats['total'] += 1.0
                 if self.best_real_policy in elitist_index: self.surro_selection_stats['elite'] += 1.0
