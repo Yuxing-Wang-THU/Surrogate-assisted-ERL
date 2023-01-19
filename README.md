@@ -9,7 +9,7 @@ The integration of Reinforcement Learning (RL) and Evolutionary Algorithms (EAs)
 
 ## Citation
 
-```shell
+```
 @article{wang2022surrogate,
   title={A surrogate-assisted controller for expensive evolutionary reinforcement learning},
   author={Wang, Yuxing and Zhang, Tiantian and Chang, Yongzhe and Wang, Xueqian and Liang, Bin and Yuan, Bo},
