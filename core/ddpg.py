@@ -6,7 +6,7 @@ from torch.autograd import Variable
 import torch.nn.functional as F
 from torch.nn import Parameter
 import numpy as np
-
+from core.mod_utils import is_lnorm_key
 
 def soft_update(target, source, tau):
     for target_param, param in zip(target.parameters(), source.parameters()):
@@ -60,6 +60,39 @@ class Actor(nn.Module):
         out = F.tanh(self.w_out(out))
         return out
 
+    # function to grab current flattened neural network weights
+    def extract_parameters(self):
+        tot_size = self.count_parameters()
+        pvec = torch.zeros(tot_size, dtype=torch.float32).to(self.args.device)
+        count = 0
+        for name, param in self.named_parameters():
+            if is_lnorm_key(name):
+                continue
+            sz = param.numel()
+            pvec[count:count + sz] = param.view(-1)
+            count += sz
+        return pvec.detach().clone()
+
+    # function to inject a flat vector of ANN parameters into the model's current neural network weights
+    def inject_parameters(self, pvec):
+        count = 0
+        for name, param in self.named_parameters():
+            if is_lnorm_key(name):
+                continue
+            sz = param.numel()
+            raw = pvec[count:count + sz]
+            reshaped = raw.view(param.size())
+            param.data.copy_(reshaped.data)
+            count += sz
+
+    # count how many parameters are in the model
+    def count_parameters(self):
+        count = 0
+        for name, param in self.named_parameters():
+            if is_lnorm_key(name):
+                continue
+            count += param.numel()
+        return count
 
 class Critic(nn.Module):
 

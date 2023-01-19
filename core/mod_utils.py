@@ -6,7 +6,7 @@ import numpy as np, torch, os, gym
 class Tracker(): #Tracker
     def __init__(self, parameters, vars_string, project_string):
         self.vars_string = vars_string; self.project_string = project_string
-        self.foldername = parameters.save_foldername  
+        self.foldername = parameters.save_foldername
         self.all_tracker = [[[],0.0,[]] for _ in vars_string] #[Id of var tracked][fitnesses, avg_fitness, csv_fitnesses]
         self.counter = 0
         self.conv_size = 10
@@ -158,7 +158,8 @@ def pickle_obj(filename, object):
 def unpickle_obj(filename):
     with open(filename, 'rb') as f:
         return pickle.load(f)
-
+def is_lnorm_key(key):
+    return key.startswith('lnorm')
 def odict_to_numpy(odict):
     l = list(odict.values())
     state = l[0]
