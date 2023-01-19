@@ -272,7 +272,7 @@ class Agent:
                 batch = replay_memory.Transition(*zip(*transitions))
                 self.rl_agent.update_parameters(batch)
 
-            # Synch RL Agent to NE and butt == "real"
+            # Synch RL Agent to NE
             # Elite protection
             if self.num_games % self.args.synch_period == 0:
                 if worst_index not in all_elites:
