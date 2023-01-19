@@ -27,7 +27,7 @@ scipy==1.5.4
 
 torch==1.8.1+cu111
 
-### Surrogate-assisted ERL with Generation-based control
+### Surrogate-assisted ERL with Generation-based Control
 Args
 ```
 '--env': Environment Choices: (HalfCheetah-v2) (Ant-v2) (Reacher-v2) (Walker2d-v2) (Swimmer-v2) (Hopper-v2)', default='Hopper-v2'
@@ -41,6 +41,19 @@ Example
 python SERL-G.py --env="Walker2d-v2" --seed=0 --device=3 --surate=0.6
 ```
 
+### Surrogate-assisted ERL with Individual-based Control
+Args
+```
+'--env': Environment Choices: (HalfCheetah-v2) (Ant-v2) (Reacher-v2) (Walker2d-v2) (Swimmer-v2) (Hopper-v2)', default='Hopper-v2'
+'--seed': Random seed, default=1
+'--alpha': Control factor of the candidate population size, default=1.0
+'--deviceid': GPU device ID, default=1
+```
+
+Example
+``` shell
+python SERL-I.py --env="Hopper-v2" --seed=0 --device=1 --alpha=1.0
+```
 
 ## Citation
 
